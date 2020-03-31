@@ -49,7 +49,7 @@ Costo
 Mensajes 📖
 
 *Agregar Ruta
--Si  el usuario llena los datos que se solicitan  los cuales se muestran en la parte de arriba 
+-Si  el usuario llena los datos que se solicitan  los cuales se muestran en la parte de arriba
 El mensaje dira "Ruta Agregada con exito".
 
 *Consultar  RUta
@@ -67,6 +67,7 @@ Ya que los datos están en el sistema el usuario podrá modificar los datos ingr
 
 ## Versionado 📌
 
+-[]
 
 
 ## Autores ✒️
