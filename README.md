@@ -20,7 +20,7 @@ Termius
 
 ```
 
-###  Funcionalidades 🔧
+### Funcionalidades 🔧
 Agregar ⌨️
 NomnreRuta
 Destino
@@ -45,7 +45,7 @@ Destino
 TipoBoleto
 Costo
 
-************************
+**************************************************************************************************************************************
 Mensajes 📖
 
 *Agregar Ruta
