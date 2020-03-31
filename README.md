@@ -45,22 +45,23 @@ Destino
 TipoBoleto
 Costo
 
+************************
+Mensajes 📖
 
+*Agregar Ruta
+-Si  el usuario llena los datos que se solicitan  los cuales se muestran en la parte de arriba 
+El mensaje dira "Ruta Agregada con exito".
 
+*Consultar  RUta
+Una vez que los datos de las rutas se han ingressado , el usuario podra consultar todas las rutas del sistema
+-"Ingrese los datos de la ruta que desee consultar.
 
+*Modificar Ruta
+Ya que los datos están en el sistema el usuario podrá modificar los datos ingresado
 
-```
-Da un ejemplo
-```
+*Eliminar Ruta
+-Una vez que todos los datos de las rutas están en el sistema el usuario podrá eliminar la ruta seleccionada “Ingrese el Nombre de la ruta que dese eliminar”
 
-## Despliegue 📦
-
-_Agrega notas adicionales sobre como hacer deploy_
-
-## Construido con 🛠️
-
-
-## Wiki 📖
 
 
 
