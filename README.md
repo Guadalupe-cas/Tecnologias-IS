@@ -1,5 +1,5 @@
 # Tecnologias-IS
-Sistema Web Agencia Autobus  http://54.196.11.51:8080/Autobus1.wsdl
+Sistema Web Agencia Autobus  http://34.207.215.173:8080/Autobus1.wsdl
 
 
 # **Agencia de Autobus
