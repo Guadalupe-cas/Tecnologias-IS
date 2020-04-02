@@ -58,7 +58,7 @@ Ya que los datos están en el sistema el usuario podrá modificar los datos ingr
 
 Una vez que todos los datos de las rutas están en el sistema el usuario podrá eliminar la ruta seleccionada 												
 
-​					“Ingrese el Nombre de la ruta que dese eliminar”
+​					“Ingrese el Nombre de la ruta que desee eliminar"
 
 
 
