@@ -23,6 +23,7 @@ creacion de un sistema para una agencia de autobus, los datos relevantes se mues
 
 | Nombre de la cariable | Tipo     |
 | --------------------- | -------- |
+| IdRuta                | Cadena   |
 | NombreRuta            | *Cadena* |
 | Destino               | *Cadena* |
 | TipoBoleto            | *Cadena* |
