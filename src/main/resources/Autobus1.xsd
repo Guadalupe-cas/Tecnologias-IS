@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+ targetNamespace="http://www.example.org/Autobus1"
+  xmlns:tns="http://www.example.org/Autobus1" elementFormDefault="qualified">
+  
+ 
+  <element name ="AgregarRutaRequest">
+  <complexType>
+  <sequence>
+  <element name = "IdRuta" type = "string"></element>
+  	<element name ="NombreRuta" type = "string"></element> 	
+  </sequence>
+  </complexType>
+   </element>
+   
+    <element name ="AgregarRutaResponse">
+  <complexType>
+  <sequence>
+  	<element name ="respuesta" type = "string"></element>
+  </sequence>
+  </complexType>
+   </element>
+   
+    
+  <element name ="ConsultarRutaRequest">
+  <complexType>
+  <sequence>
+  	<element name ="NombreRuta" type = "string"></element> 
+  </sequence>
+  </complexType>
+   </element>
+
+  
+  <element name ="ConsultarRutaResponse">
+  <complexType>
+  <sequence>
+   <element name = "IdRuta" type = "string"></element>
+  	<element name ="NombreRuta" type = "string"></element>
+  </sequence>
+  </complexType>
+   </element>
+  
+  
+ 
+    
+   
+  <element name ="EliminarRutaRequest">
+  <complexType>
+  <sequence>
+  	<element name ="IdRuta" type = "string"></element> 
+  </sequence>
+  </complexType>
+   </element>
+
+  
+  <element name ="EliminarRutaResponse">
+  <complexType>
+  <sequence>
+    <element name = "IdRuta" type = "string"></element>
+  	<element name ="NombreRuta" type = "string"></element>
+  </sequence>
+  </complexType>
+   </element>  
+ 
+  
+    <element name ="ModificarRutaRequest">
+  <complexType>
+  <sequence>
+    <element name = "IdRuta" type = "string"></element>
+  	<element name ="NombreRuta" type = "string"></element>  
+  </sequence>
+  </complexType>
+   </element>
+
+  
+   <element name ="ModificarRutaResponse">
+  <complexType>
+  <sequence>
+  <element name = "IdRuta" type = "string"></element>
+  	<element name ="NombreRuta" type = "string"></element>
+  </sequence>
+  </complexType>
+   </element>
+  
+  
+  
+  <element name ="AgregarClienteRequest">
+  <complexType>
+  <sequence>
+  <element name ="NombreCliente" type = "string"></element>
+   <element name ="Apellidos" type = "string"></element>
+  <element name = "IdCliente" type = "string"></element>
+ </sequence>
+  </complexType>
+   </element>
+   
+    <element name ="AgregarClienteResponse">
+  <complexType>
+  <sequence>
+  	<element name ="respuesta" type = "string"></element>
+  </sequence>
+  </complexType>
+   </element>
+   
+   
+      
+  <element name ="ConsultarClienteRequest">
+  <complexType>
+  <sequence>
+  <element name ="IdCliente" type = "string"></element>
+  </sequence>
+  </complexType>
+   </element>
+
+  
+  <element name ="ConsultarClienteResponse">
+  <complexType>
+  <sequence>
+ <element name ="NombreCliente" type = "string"></element>
+   <element name ="Apellidos" type = "string"></element>
+  <element name = "IdCliente" type = "string"></element>
+  </sequence>
+  </complexType>
+   </element>
+   
+     <element name ="ModificarClienteRequest">
+  <complexType>
+  <sequence>
+   <element name ="NombreCliente" type = "string"></element>
+   <element name ="Apellidos" type = "string"></element>
+  <element name = "IdCliente" type = "string"></element>
+  </sequence>
+  </complexType>
+   </element>
+
+  
+  <element name ="ModificarClienteResponse">
+  <complexType>
+  <sequence>
+   <element name ="NombreCliente" type = "string"></element>
+   <element name ="Apellidos" type = "string"></element>
+  <element name = "IdCliente" type = "string"></element>
+  </sequence>
+  </complexType>
+   </element>
+   
+   
+     
+     <element name ="EliminarClienteRequest">
+  <complexType>
+  <sequence>
+  <element name = "IdCliente" type = "string"></element>
+  </sequence>
+  </complexType>
+   </element>
+
+  
+  <element name ="EliminarClienteResponse">
+  <complexType>
+  <sequence>
+    <element name ="NombreCliente" type = "string"></element>
+   <element name ="Apellidos" type = "string"></element>
+  <element name = "IdCliente" type = "string"></element>
+  </sequence>
+  </complexType>
+   </element>
+   
+   <element name ="AgregarBoletoRequest">
+  <complexType>
+  <sequence>
+  <element name = "IdBoleto" type = "string"></element>
+   <element name = "NombreRuta" type = "string"></element>
+    <element name ="Destino" type = "string"></element> 
+  <element name = "NombreCliente" type = "string"></element>
+  <element name ="TipoBoleto" type = "string"></element>
+  	<element name ="Costo" type = "int"></element>
+  	<element name ="NumAsiento" type = "int"></element>
+ </sequence>
+  </complexType>
+   </element>
+   
+    <element name ="AgregarBoletoResponse">
+  <complexType>
+  <sequence>
+  	<element name ="respuesta" type = "string"></element>
+  </sequence>
+  </complexType>
+   </element>
+   
+   
+     <element name ="ConsultarBoletoRequest">
+  <complexType>
+  <sequence>
+  <element name = "IdBoleto" type = "string"></element>
+ </sequence>
+  </complexType>
+   </element>
+   
+    <element name ="ConsultarBoletoResponse">
+  <complexType>
+  <sequence>
+  <element name = "IdBoleto" type = "string"></element>
+   <element name = "NombreRuta" type = "string"></element>
+    <element name ="Destino" type = "string"></element> 
+  <element name = "NombreCliente" type = "string"></element>
+  <element name ="TipoBoleto" type = "string"></element>
+  	<element name ="Costo" type = "int"></element>
+  	<element name ="NumAsiento" type = "int"></element>  	
+  </sequence>
+  </complexType>
+   </element>
+   
+   
+   
+     <element name ="CancelarBoletoRequest">
+  <complexType>
+  <sequence>
+  <element name = "IdBoleto" type = "string"></element>
+ </sequence>
+  </complexType>
+   </element>
+   
+    <element name ="CancelarBoletoResponse">
+  <complexType>
+  <sequence>
+<element name = "IdBoleto" type = "string"></element>
+   <element name = "NombreRuta" type = "string"></element>
+    <element name ="Destino" type = "string"></element> 
+  <element name = "NombreCliente" type = "string"></element>
+  <element name ="TipoBoleto" type = "string"></element>
+  	<element name ="Costo" type = "int"></element>
+  	<element name ="NumAsiento" type = "int"></element>  		
+  </sequence>
+  </complexType>
+   </element>
+  
+  
+  
+</schema>
