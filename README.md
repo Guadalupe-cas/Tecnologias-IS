@@ -22,9 +22,8 @@ creacion de un sistema para una agencia de autobus, los datos relevantes se mues
 - [ ] Eliminar Ruta       
 
       ​
-      $$
+     
       Cliente
-      $$
       ​           
 
 
