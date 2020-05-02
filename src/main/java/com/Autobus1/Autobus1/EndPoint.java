@@ -42,10 +42,17 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
+
+import controlador.BoletoDAO;
+import controlador.ClienteDAO;
+import controlador.RutaDAO;
 /*
 import controlador.BoletoDAO;
 import controlador.RutaDAO;
 */
+import modelo.Ruta;
+import modelo.Boleto;
+import modelo.Cliente;
 
 
 
@@ -53,6 +60,7 @@ import controlador.RutaDAO;
 @Endpoint
 public class EndPoint {
 	
+	/*
 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "AgregarRutaRequest")
 
 	@ResponsePayload
@@ -62,26 +70,35 @@ public class EndPoint {
 		+ peticion.getNombreRuta());
 		return respuesta;
 	}
-	
-	
-	/*
-	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "AgregarRutaRequest")
-
-	@ResponsePayload
-	public AgregarRutaResponse  getAgregarRuta ( @RequestPayload  AgregarRutaRequest  peticion ) {
-		AgregarRutaResponse respuesta = new  AgregarRutaResponse ();
-		RutaDAO Ruta =  new  RutaDAO ( peticion . getIdRuta (), peticion . getNombreRuta ());
-		if(Ruta.AgregarRuta()){
-			respuesta . setRespuesta ( " Se ha agregado la ruta "  + Ruta . getIdRuta() +" al sistema " );
-		} else {
-			respuesta . setRespuesta ( " No se ha añadido agregar la ruta al sistema " );
-		}
-		return respuesta;
-	}
 	*/
 	
 	
+		
 	
+	
+
+ 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "AgregarRutaRequest")
+
+@ResponsePayload
+public AgregarRutaResponse  getAgregarRuta( @RequestPayload  AgregarRutaRequest  peticion ) {
+	AgregarRutaResponse respuesta = new  AgregarRutaResponse ();
+	RutaDAO Ruta =  new  RutaDAO ( peticion . getIdRuta(), peticion . getNombreRuta());
+	if(Ruta.AgregarRuta()){
+		respuesta . setRespuesta ( " Se ha agregado la ruta al sistema " + Ruta.getIdRuta() + "" + Ruta.getNombreRuta()
+		+ "");
+	} else {
+		respuesta . setRespuesta ( " No se ha añadido la ruta   al sistema "  + Ruta.getIdRuta() + "" + Ruta.getNombreRuta()
+		+ "");
+	}
+	return respuesta;
+	
+	}
+ 
+	
+	
+	
+	
+	/*
 	
 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart ="ConsultarRutaRequest")
 
@@ -93,25 +110,50 @@ public class EndPoint {
 		return NombreRuta;
 
 	}
-	
-	/*
-	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ConsultarRutaRequest")
-
-	@ResponsePayload
-	public ConsultarRutaResponse  getConsultarrRuta ( @RequestPayload  ConsultarRutaRequest  peticion ) {
-		ConsultarRutaResponse NombreRuta = new  ConsultarRutaResponse ();
-		RutaDAO Ruta =  new  RutaDAO ( peticion . getIdRuta (), peticion . getNombreRuta ());
-		if(Ruta.AgregarRuta()){
-			NombreRuta . setNombreRuta( " Se ha agregado la ruta "  + Ruta . getIdRuta() +" al sistema " );
-		} else {
-			NombreRuta . setNombreRuta ( " No se ha añadido agregar la ruta al sistema " );
-		}
-		return NombreRuta;
-	}
-	
 	*/
 	
 	
+	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ConsultarRutaRequest")
+
+	@ResponsePayload
+	public ConsultarRutaResponse  getConsultarRuta ( @RequestPayload  ConsultarRutaRequest  peticion ) {
+		ConsultarRutaResponse respuesta = new  ConsultarRutaResponse ();
+		RutaDAO ruta =  new  RutaDAO ( peticion . getIdRuta ());
+		
+		Ruta r = ruta.ConsultarIdRuta();
+		if(r != null){
+			respuesta.setIdRuta (r.getIdRuta());  	
+			respuesta.setNombreRuta(r.getNombreRuta());
+		} else {
+			respuesta. setNombreRuta ( " No se pudo consultar la ruta intente mas tarde " );
+		}
+		return respuesta;
+	}
+	
+	/*
+	 * @PayloadRoot(namespace = "http://www.example.org/Hotel",localPart = "MostrarClienteRequest")
+	@ResponsePayload
+	public MostrarClienteResponse getConsultarCliente (@RequestPayload MostrarClienteRequest peticion) {
+		MostrarClienteResponse respuesta = new MostrarClienteResponse();
+		ClientesDao cliente = new ClientesDao(peticion.getIdCliente());
+		
+		Cliente c = cliente.MostrarCliente(peticion.getIdCliente());
+		
+		
+		if (c != null) {
+			respuesta.setNombre(c.getNombre());
+			respuesta.setApellido(c.getApellido());
+			respuesta.setCorreo(c.getCorreo());
+			respuesta.setTelefono(c.getTelefono());
+			respuesta.setTipoPago(c.getTipoPago());
+		}
+		
+		return respuesta;
+	}
+	 */
+	
+	
+	/*
 	
 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart ="EliminarRutaRequest")
 
@@ -122,26 +164,27 @@ public class EndPoint {
 		IdRuta.setNombreRuta("La ruta a sido eliminada: " + peticion.getNombreRuta() + peticion.getIdRuta());
 		return IdRuta;
 	}
-	/*
+	*/
 	
 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "EliminarRutaRequest")
 
 	@ResponsePayload
-	public EliminarRutaResponse  getConsultarRuta ( @RequestPayload  ConsultarRutaRequest  peticion ) {
-		EliminarRutaResponse IdRuta = new  EliminarRutaResponse ();
-		RutaDAO Ruta =  new  RutaDAO ( peticion . getIdRuta (), peticion . getNombreRuta ());
-		if(Ruta.AgregarRuta()){
-			IdRuta . setIdRuta( " Se ha agregado la ruta "  + Ruta . getIdRuta() +" al sistema " );
+	public EliminarRutaResponse  getEliminarRuta ( @RequestPayload  EliminarRutaRequest  peticion ) {
+		EliminarRutaResponse respuesta = new  EliminarRutaResponse ();
+		RutaDAO Ruta =  new  RutaDAO ( peticion . getIdRuta ());
+		if(Ruta.EliminarRuta()){
+			respuesta.setRespuesta ( " Se elimino la ruta  del sistema" );
 		} else {
-			IdRuta . setIdRuta ( " No se ha añadido agregar la ruta al sistema " );
+			respuesta.setRespuesta ( " No se puedo eliminar la ruta del sistema " );
 		}
-		return IdRuta;
+		return respuesta;
 	}
 	
 	/*
 	 * 
 	 */
 	
+	/*
 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart ="ModificarRutaRequest")
 
 	@ResponsePayload
@@ -152,7 +195,9 @@ public class EndPoint {
 		return NombreRuta;
 	}
 	
-	/*
+	*/
+	
+	
 	
 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ModificarRutaRequest")
 
@@ -160,20 +205,20 @@ public class EndPoint {
 	public ModificarRutaResponse  getModificarRuta ( @RequestPayload  ModificarRutaRequest  peticion ) {
 		ModificarRutaResponse IdRuta = new  ModificarRutaResponse ();
 		RutaDAO Ruta =  new  RutaDAO ( peticion . getIdRuta (), peticion . getNombreRuta ());
-		if(Ruta.AgregarRuta()){
-			IdRuta . setIdRuta( " Se ha agregado la ruta "  + Ruta . getIdRuta() +" al sistema " );
+		if(Ruta.ModificarRuta()){
+			IdRuta . setIdRuta( " Se modifico la ruta "  + Ruta . getIdRuta() + Ruta.getNombreRuta() + " al sistema " );
 		} else {
-			IdRuta . setIdRuta ( " No se ha añadido agregar la ruta al sistema " );
+			IdRuta . setIdRuta ( " No se pudo modificar  la ruta del  sistema " );
 		}
 		return IdRuta;
 	}
-	*/
+	
 	
 	
 /* Aqui terminar el de RUtas ************************************************************************
  * /*
  */
-	
+	/*
 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "AgregarClienteRequest")
 
 	@ResponsePayload
@@ -183,26 +228,29 @@ public class EndPoint {
 		+ peticion.getNombreCliente() 
 		+ peticion.getApellidos() + peticion.getIdCliente());
 		return respuesta;
-	}
+	}*/
 	
-	/*
-	 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "AgregarClientequest")
+	
+	
+	 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "AgregarClienteRequest")
 
 	@ResponsePayload
-	public AgregarClienteResponse  getAgregarRuta ( @RequestPayload  AgregarClienteRequest  peticion ) {
+	public AgregarClienteResponse  getAgregarCliente ( @RequestPayload  AgregarClienteRequest  peticion ) {
 		AgregarClienteResponse respuesta = new  AgregarClienteResponse ();
-		RutaDAO Cliente =  new  ClienteDAO ( peticion . getNombreCliente (), peticion . getApellidos(), peticion . getIdCliente());
+		ClienteDAO Cliente =  new  ClienteDAO ( peticion . getNombreCliente (), peticion . getApellidos(), peticion . getIdCliente());
 		if(Cliente.AgregarCliente()){
-			respuesta . setRespuesta ( " Se ha agregado el cliente al sistema " );
+			respuesta . setRespuesta ( " Se ha agregado el cliente al sistema " + Cliente.getNombreCliente() + "" + Cliente.getApellidos()
+			+ "");
 		} else {
-			respuesta . setRespuesta ( " No se ha añadido agregar la ruta al sistema " );
+			respuesta . setRespuesta ( " No se ha añadido agregar el cliente  al sistema " + Cliente.getNombreCliente() + "" + Cliente.getApellidos()
+			+ "");
 		}
 		return respuesta;
 		
 		}
-	 */
+	 
 	
-	
+	/*
 	
 	
 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ConsultarClienteRequest")
@@ -215,25 +263,49 @@ public class EndPoint {
 		+ peticion.getApellidos() + peticion.getIdCliente());
 		return NombreCliente;
 
-	}
+	}*/
+	 	
+/*
 	
-	
-	/*
-	 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ConsultarClientequest")
+	 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ConsultarClienteRequest")
 
 	@ResponsePayload
 	public ConsultarClienteResponse  getConsultarCliente( @RequestPayload  ConsultarClienteRequest  peticion ) {
 		ConsultarClienteResponse IdCliente = new  ConsultarClienteResponse ();
-		RutaDAO Cliente =  new  ClienteDAO ( peticion . getNombreCliente (), peticion . getApellidos(), peticion . getIdCliente());
+		ClienteDAO Cliente =  new  ClienteDAO ( peticion . getNombreCliente (), peticion .getApellidos(), peticion . getIdCliente());
 		if(Cliente.ConsultarCliente()){
-			IdCliente. setIdCliente ( " Se ha agregado el cliente al sistema " );
+			IdCliente. setIdCliente ( " El cliente que consulto es: "+ Cliente.getIdCliente() + Cliente .getNombreCliente() + Cliente .getApellidos());
 		} else {
-			IdCliente. setIdCliente ( " No se ha añadido agregar la ruta al sistema " );
+			IdCliente. setIdCliente ( " No se pudo consultar el cliente, intente de nuevo" );
 		}
 		return IdCliente;
 		
+		}*/
+	 	
+	 	
+		@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ConsultarClienteRequest")
+
+		@ResponsePayload
+		public ConsultarClienteResponse  getConsultarCliente ( @RequestPayload  ConsultarClienteRequest  peticion ) {
+			ConsultarClienteResponse respuesta = new  ConsultarClienteResponse ();
+			ClienteDAO cliente =  new  ClienteDAO ( peticion . getIdCliente ());
+			
+			Cliente c = cliente.ConsultarCliente();
+			
+			if(c != null){
+				respuesta.setIdCliente (c.getIdCliente());  	
+				respuesta.setNombreCliente(c.getNombreCliente());
+				respuesta.setApellidos(c.getApellidos());
+			} else {
+				respuesta. setNombreCliente ( " No se pudo consultar Cliente intente mas tarde " );
+			}
+			return respuesta;
 		}
-	 */
+	 
+	 	
+	 	
+	 	/*
+	 	
 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ModificarClienteRequest")
 
 	@ResponsePayload
@@ -244,24 +316,25 @@ public class EndPoint {
 		+ peticion.getApellidos() + peticion.getIdCliente());
 		return NombreCliente;
 	}
+	*/
 	
-	/*
-	 	 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ModificarClientequest")
+	 	 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ModificarClienteRequest")
 
 	@ResponsePayload
 	public ModificarClienteResponse  getModificarCliente( @RequestPayload  ModificarClienteRequest  peticion ) {
 		ModificarClienteResponse IdCliente = new  ModificarClienteResponse ();
-		RutaDAO Cliente =  new  ClienteDAO ( peticion . getNombreCliente (), peticion . getApellidos(), peticion . getIdCliente());
-		if(Cliente.AgregarCliente()){
-			IdCliente. setIdCliente ( " Se ha agregado el cliente al sistema " );
+		ClienteDAO Cliente =  new  ClienteDAO ( peticion . getNombreCliente (), peticion . getApellidos(), peticion . getIdCliente());
+		if(Cliente.modificarCliente()){
+			IdCliente. setIdCliente ( " Se a modificado el cliente " );
 		} else {
-			IdCliente. setIdCliente ( " No se ha añadido agregar la ruta al sistema " );
+			IdCliente. setIdCliente ( " No se pudo modificar el cliente intente de nuevo  " );
 		}
 		return IdCliente;
 		
 		}
-	 */
+	 
 	
+	 	 	/*
 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "EliminarClienteRequest")
 
 	@ResponsePayload
@@ -271,29 +344,34 @@ public class EndPoint {
 		+ peticion.getNombreCliente() 
 		+ peticion.getApellidos() + peticion.getIdCliente());
 		return NombreCliente;
-	}
+	}*/
 	
-	/*
-	 	 	 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "EliminarClientequest")
+	
+	 	 	 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "EliminarClienteRequest")
 
 	@ResponsePayload
 	public EliminarClienteResponse  getEliminarCliente( @RequestPayload  EliminarClienteRequest  peticion ) {
-		EliminarClienteResponse IdCliente = new  EliminarClienteResponse ();
-		RutaDAO Cliente =  new  ClienteDAO ( peticion . getNombreCliente (), peticion . getApellidos(), peticion . getIdCliente());
-		if(Cliente.EliminarCliente()){
-			IdCliente. setIdCliente ( " Se ha agregado el cliente al sistema " );
+		EliminarClienteResponse respuesta = new  EliminarClienteResponse ();
+		ClienteDAO Cliente =  new  ClienteDAO ( peticion.getIdCliente());
+		if(Cliente.eliminarCliente()){
+			respuesta.setRespuesta( " Se ha eliminado el cliente del sistema " );
 		} else {
-			IdCliente. setIdCliente ( " No se ha añadido agregar la ruta al sistema " );
+			respuesta.setRespuesta ( " No se pudo eliminar  el cliente del  sistema " );
 		}
-		return IdCliente;
+		return respuesta;
 		
 		}
-	 */
+	 
 	
 	/* Aqui terminar el de Clientes ************************************************************************
-	 * /*
+	 * 		ClienteDAO Cliente =  new  ClienteDAO ( peticion . getNombreCliente (), peticion . getApellidos(), peticion . getIdCliente());
+
+	 */
+	  /*
 	 */
 	
+	
+	/*
 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "AgregarBoletoRequest")
 
 	@ResponsePayload
@@ -309,24 +387,27 @@ public class EndPoint {
 		+ peticion.getNumAsiento());
 		return respuesta;
 	}
+	*/
 	
-	/*
-	 @PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "AgregarBoletoRequest")
+	
+	 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "AgregarBoletoRequest")
 
 	@ResponsePayload
 	public AgregarBoletoResponse  getAgregarBoleto ( @RequestPayload  AgregarBoletoRequest  peticion ) {
 		AgregarBoletoResponse respuesta = new  AgregarBoletoResponse ();
-		BoletoDAO Boleto =  new  BoletoDAO ( peticion . getIdBoleto (), peticion . getNombreRuta (), 
-		peticion.getDestino() , peticion.NombreCliente(), peticion.getTipoBoleto(), peticion.getCosto(), peticion.getNumAsiento());
+		BoletoDAO Boleto =  new  BoletoDAO ( peticion . getIdBoleto () , peticion . getNombreRuta(), peticion . getDestino(), peticion.getNombreCliente(),
+				peticion.getTipoBoleto(), peticion.getCosto(), peticion.getNumAsiento());
 		if(Boleto.AgregarBoleto()){
-			respuesta . setRespuesta ( " Se ha agregado la ruta "  + Ruta . getIdRuta() +" al sistema " );
+			respuesta . setRespuesta ( " Se ha agregado el boleto al sistema ");
 		} else {
-			respuesta . setRespuesta ( " No se ha añadido agregar la ruta al sistema " );
+			respuesta . setRespuesta ( " No se ha añadio el boleto   al sistema ");
 		}
 		return respuesta;
-	}
-	 */
+		
+		}
 	
+	 
+	/*
 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ConsultarBoletoRequest")
 
 	@ResponsePayload
@@ -341,7 +422,7 @@ public class EndPoint {
 		+ peticion.getCosto()
 		+ peticion.getNumAsiento());
 		return IdBoleto;
-	}
+	}*/
 	
 	/*
 	 @PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ConsultarBoletoRequest")
@@ -349,17 +430,49 @@ public class EndPoint {
 	@ResponsePayload
 	public ConsultarBoletoResponse  getConsultarBoleto( @RequestPayload ConsultarBoletoRequest  peticion ) {
 		ConsultarBoletoResponse IdBoleto = new  ConsultarBoletoResponse ();
-		BoletoDAO Boleto =  new  BoletoDAO ( peticion . getIdBoleto (), peticion . getNombreRuta (), 
+		BoletoDAO Boleto =  new  BoletoDAO ( peticion .getIdBoleto (), peticion . getNombreRuta (), 
 		peticion.getDestino() , peticion.NombreCliente(), peticion.getTipoBoleto(), peticion.getCosto(), peticion.getNumAsiento());
-		if(Boleto.ConsultarBoleto()){
-			IdBoleto . setIdBoleto( " Se ha agregado la ruta "  + Ruta . getIdRuta() +" al sistema " );
+		if(Boleto.ConsultarIdBoleto()){
+			IdBoleto . setIdBoleto( " El boleto consultado es : "  + Boleto.getIdBoleto()+"" + Boleto.getNombreRuta() + "" + Boleto.getDestino() + "" + 
+		Boleto.getNombreCliente() + "" + Boleto.getTipoBoleto() + "" + Boleto.getCosto() + "" + Boleto.getNumAsiento());
 		} else {
-			IdBoleto. setRespuesta ( " No se ha añadido agregar la ruta al sistema " );
+			IdBoleto. setIdBoleto ( " No se pudo consultar el boleto , intente de nuevo " );
 		}
 		return IdBoleto;
-	}
-	*/
+	}*/
+	 	
+	 	
+	 	
+	 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ConsultarBoletoRequest")
+
+		@ResponsePayload
+		public ConsultarBoletoResponse  getConsultarBoleto ( @RequestPayload  ConsultarBoletoRequest  peticion ) {
+			ConsultarBoletoResponse respuesta = new  ConsultarBoletoResponse ();
+			BoletoDAO boleto =  new  BoletoDAO ( peticion . getIdBoleto ());
+			
+			Boleto b = boleto.ConsultarBoleto();
+			
+			if(b != null){
+				respuesta.setIdBoleto (b.getIdBoleto());
+				respuesta.setNombreRuta(b.getNombreRuta());
+				respuesta.setDestino(b.getDestino());
+				respuesta.setNombreCliente(b.getNombreCliente());
+				respuesta.setTipoBoleto(b.getDestino());
+				respuesta.setCosto(b.getCosto());
+				respuesta.setNumAsiento(b.getNumAsiento());
+			
+			} else {
+				respuesta. setIdBoleto ( " No se pudo consultar Cliente intente mas tarde " );
+			}
+			return respuesta;
+		}
+	 
+	 	
+	 	
+	 	
 	
+	
+	/*
 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "CancelarBoletoRequest")
 
 	@ResponsePayload
@@ -376,22 +489,21 @@ public class EndPoint {
 	
 		return  IdBoleto;
 	}
+	*/
 	
 	
-	/*
 	 	 @PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "CancelarBoletoRequest")
 
 	@ResponsePayload
 	public CancelarBoletoResponse  getCancelarBoleto( @RequestPayload CancelarBoletoRequest  peticion ) {
-		CancelarBoletoResponse IdBoleto = new  CancelarBoletoResponse ();
-		BoletoDAO Boleto =  new  BoletoDAO ( peticion . getIdBoleto (), peticion . getNombreRuta (), 
-		peticion.getDestino() , peticion.NombreCliente(), peticion.getTipoBoleto(), peticion.getCosto(), peticion.getNumAsiento());
+		CancelarBoletoResponse respuesta= new  CancelarBoletoResponse ();
+		BoletoDAO Boleto =  new  BoletoDAO ( peticion . getIdBoleto ());
 		if(Boleto.CancelarBoleto()){
-			IdBoleto . setIdBoleto( " Se ha agregado la ruta "  + Ruta . getIdRuta() +" al sistema " );
+			respuesta.setRespuesta ( " Se ha cancelado el boleto"  + Boleto.getIdBoleto());
 		} else {
-			IdBoleto. setRespuesta ( " No se ha añadido agregar la ruta al sistema " );
+			respuesta.setRespuesta ( " No se ha podido cancelar el boleto del sistema" );
 		}
-		return IdBoleto;
+		return respuesta;
 	}
-*/
+
 }

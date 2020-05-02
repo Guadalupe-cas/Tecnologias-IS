@@ -6,8 +6,12 @@ package controlador;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import modelo.Cliente;
+import modelo.Ruta;
 import database.conexion;
+import modelo.Cliente;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ClienteDAO {
 
@@ -22,15 +26,19 @@ public class ClienteDAO {
 	 * Constructor de CLIENTE para registrar al cliente
 	 * @param nombre, apellido, telefono, correo, formaPago
 	 */
-	public ClienteDAO(String NombreCliente,String Apellidos, String IdCliente) {
+	public ClienteDAO(String NombreCliente,String Apellidos) {
 		this.NombreCliente = NombreCliente;
 		this.Apellidos = Apellidos;
-		this.IdCliente = IdCliente;
+		
+	}
+	
+	public ClienteDAO() throws ClassNotFoundException{
+		database = new conexion();
 	}
 	
 	/**
 	 * Constructor de CLIENTE para actualizar al cliente
-	 * @param idCliente, nombre, apellido, telefono, correo, formaPago
+	 * @param idCliente, nombre, apellido
 	 */
 
 	
@@ -43,6 +51,15 @@ public class ClienteDAO {
 		this.IdCliente = IdCliente;
 	}
 	
+	
+	
+	public ClienteDAO(String nombreCliente, String apellidos, String idCliente) {
+	
+		NombreCliente = nombreCliente;
+		Apellidos = apellidos;
+		IdCliente = idCliente;
+	}
+
 	/**
 	 * Metodo para registrar un cliente en la Base de Datos
 	 * @return true si se registro el cliente de forma exitosa en la BD
@@ -51,8 +68,8 @@ public class ClienteDAO {
 		boolean resultado = false;
 		this.database = new conexion();
 		try {
-			this.database.connect().createStatement().execute(
-					"INSERT INTO Cliente (NombreCliente,Apellidos,IdCliente,correo) VALUES "
+			this.database.connection().createStatement().execute(
+					"INSERT INTO clientes (NombreCliente,Apellidos,IdCliente) VALUES "
 					+ "('"+this.NombreCliente+"','"+this.Apellidos+"','"+this.IdCliente+"')");
 			resultado = true;
 		} catch (SQLException e) {
@@ -60,6 +77,8 @@ public class ClienteDAO {
 		}
 		return resultado;
 	}
+
+
 	
 	
 	
@@ -67,16 +86,18 @@ public class ClienteDAO {
 	 * Metodo para actualizar a un cliente en la Base de Datos
 	 * @return true si se actualizo el cliente de forma exitosa en la BD
 	 */
-	public boolean ModificarCliente() {
+	
+	
+	public boolean modificarCliente() {
 		boolean resultado = false;
 		this.database = new conexion();
 		try {
-			this.database.connect().createStatement().execute(
-					"UPDATE Cliente SET "
-					+ "NombreCliente = '"+this.NombreCliente+"'"
-					+ "Apellidos = '"+this.Apellidos+"'"
-					+ "IdCliente = '"+this.IdCliente+"'"
-					+ "WHERE IdCliente = "+this.IdCliente);
+			this.database.connection().createStatement().execute(
+					"UPDATE clientes SET "
+					+ "NombreCliente = '"+this.NombreCliente+"',"
+					+ "Apellidos = '"+this.Apellidos+"',"
+					+ "IdCliente = '"+this.IdCliente+"',"
+					+ "WHERE IdCliente = '"+this.IdCliente+"'");
 			resultado = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -89,12 +110,13 @@ public class ClienteDAO {
 	 * Metodo para eliminar a un cliente de la Base de Datos
 	 * @return true si se elimina el cliente de forma exitosa
 	 */
-	public boolean EliminarCliente() {
+	
+	public boolean eliminarCliente() {
 		boolean resultado = false;
 		this.database = new conexion();
 		try {
-			this.database.connect().createStatement().execute(
-					"DELETE FROM Clientes WHERE IdCliente = "+this.IdCliente);
+			this.database.connection().createStatement().execute(
+					"DELETE FROM clientes WHERE IdCliente = '"+this.IdCliente +"'");
 			resultado = true;				
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -102,15 +124,18 @@ public class ClienteDAO {
 		return resultado;
 	}
 
+
 	/**
 	 * @return the nombre
 	 */
+	
+	
 	public String getNombreCliente() {
 		this.database = new conexion();
 		if (NombreCliente == null) {
 			try {
-				this.database.connect().createStatement().execute(
-						"SELECT nombre FROM Cliente WHERE idCliente = "+this.IdCliente);
+				this.database.connection().createStatement().execute(
+						"SELECT NombreCliente FROM clientes WHERE IdCliente = '"+this.IdCliente + "'");
 								
 			} catch(SQLException e) {
 				e.printStackTrace();
@@ -124,12 +149,14 @@ public class ClienteDAO {
 	/**
 	 * @return the apellido
 	 */
+	
+
 	public String getApellidos() {
 		this.database = new conexion();
 		if (Apellidos == null) {
 			try {
-				this.database.connect().createStatement().execute(
-						"SELECT apellido FROM Cliente WHERE idCliente = "+this.IdCliente);
+				this.database.connection().createStatement().execute(
+						"SELECT Apellidos FROM clientes WHERE IdCliente = '"+this.IdCliente + "'");
 								
 			} catch(SQLException e) {
 				e.printStackTrace();
@@ -138,16 +165,18 @@ public class ClienteDAO {
 		return Apellidos;
 	}
 	
-	public boolean ConsultarIdCliente() {
+	
+	/*
+	public boolean ConsultarCliente() {
 		boolean existe = false;
 		this.database = new conexion();
 			try {
-				final String queryCheck = "SELECT * FROM Cliente WHERE IdCliente = "+this.IdCliente;
-				final PreparedStatement ps = this.database.connect().prepareStatement(queryCheck);
+				final String queryCheck = "SELECT * FROM clientes WHERE IdCliente = '"+this.IdCliente + "'";
+				final PreparedStatement ps = this.database.connection().prepareStatement(queryCheck);
 				//ps.setString(1, msgid);
 				final ResultSet resultSet = ps.executeQuery();
 				if(resultSet.next()) {
-				    final int count = resultSet.getInt(1);
+				    final String count = resultSet.getString("NombreCliente");
 				}
 				
 				
@@ -158,4 +187,54 @@ public class ClienteDAO {
 			}
 		return existe;
 	}
+*/
+	public Cliente  ConsultarCliente() {
+		Cliente cliente = null;
+	
+		this.database = new conexion();
+			try {
+				ResultSet rs = this.database.connection().createStatement().executeQuery("SELECT * FROM clientes WHERE IdCliente = '"+this.IdCliente + "'");
+				while(rs.next()) {
+					cliente = new Cliente (rs.getString("NombreCliente"),rs.getString("Apellidos"),rs.getString("IdCliente"));
+				}
+				
+				/*
+				final String queryCheck = "SELECT * FROM rutas WHERE IdRuta = '"+this.IdRuta + "'";
+				final PreparedStatement ps = this.database.connection().prepareStatement(queryCheck);
+				//ps.setString(1, msgid);
+				final ResultSet resultSet = ps.executeQuery();
+				if(resultSet.next()) {
+					 final String count = resultSet.getString("NombreRuta");
+				}
+				*/
+				
+				//this.database.connect().createStatement().execute("SELECT * FROM clientes WHERE idCliente = "+this.idCliente);
+								
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		return cliente;
+	}
+	
+	
+	
+	public String getIdCliente() {
+		// TODO Auto-generated method stub
+		String idCliente= "12345";
+		return idCliente;
+	}
+
+	public boolean ModificarCliente() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean EliminarCliente() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
+
+	
 }

@@ -1,5 +1,10 @@
 package modelo;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Boleto {
 
 
@@ -8,13 +13,13 @@ public class Boleto {
 	private String Destino;
 	private String NombreCliente;
 	private String TipoBoleto;
-	private int Costo;
-	private int NumAsiento;
+	private String Costo;
+	private String NumAsiento;
 	
 	
 	
 	
-	public Boleto(String IdBoleto, String NombreRuta, String Destino,String NombreCliente, String TipoBoleto,int Costo, int NumAsiento) {
+	public Boleto(String IdBoleto, String NombreRuta, String Destino,String NombreCliente, String TipoBoleto,String Costo, String NumAsiento) {
 		this.IdBoleto = IdBoleto;
 		this.NombreRuta = NombreRuta;
 		this.Destino = Destino;
@@ -24,6 +29,13 @@ public class Boleto {
 		this.NumAsiento = NumAsiento;
 		
 	
+	}
+
+
+
+
+	public Boleto(String string) {
+		// TODO Auto-generated constructor stub
 	}
 
 
@@ -99,29 +111,29 @@ public class Boleto {
 
 
 
-	public int getCosto() {
+	public String getCosto() {
 		return Costo;
 	}
 
 
 
 
-	public void setCosto(int costo) {
+	public void setCosto(String costo) {
 		Costo = costo;
 	}
 
 
 
 
-	public int getNumAsiento() {
+	public String getNumAsiento() {
 		return NumAsiento;
 	}
 
 
 
 
-	public void setNumAsiento(int numAsiento) {
+	public void setNumAsiento(String numAsiento) {
 		NumAsiento = numAsiento;
 	}
-	
+
 }

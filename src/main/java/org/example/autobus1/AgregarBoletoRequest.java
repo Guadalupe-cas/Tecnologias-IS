@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2020.04.07 a las 08:18:59 PM CDT 
+// Generado el: 2020.05.01 a las 02:39:32 PM CDT 
 //
 
 
@@ -30,8 +30,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="Destino" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="NombreCliente" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="TipoBoleto" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Costo" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="NumAsiento" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="Costo" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="NumAsiento" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -63,10 +63,10 @@ public class AgregarBoletoRequest {
     protected String nombreCliente;
     @XmlElement(name = "TipoBoleto", required = true)
     protected String tipoBoleto;
-    @XmlElement(name = "Costo")
-    protected int costo;
-    @XmlElement(name = "NumAsiento")
-    protected int numAsiento;
+    @XmlElement(name = "Costo", required = true)
+    protected String costo;
+    @XmlElement(name = "NumAsiento", required = true)
+    protected String numAsiento;
 
     /**
      * Obtiene el valor de la propiedad idBoleto.
@@ -191,32 +191,48 @@ public class AgregarBoletoRequest {
     /**
      * Obtiene el valor de la propiedad costo.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public int getCosto() {
+    public String getCosto() {
         return costo;
     }
 
     /**
      * Define el valor de la propiedad costo.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setCosto(int value) {
+    public void setCosto(String value) {
         this.costo = value;
     }
 
     /**
      * Obtiene el valor de la propiedad numAsiento.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public int getNumAsiento() {
+    public String getNumAsiento() {
         return numAsiento;
     }
 
     /**
      * Define el valor de la propiedad numAsiento.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setNumAsiento(int value) {
+    public void setNumAsiento(String value) {
         this.numAsiento = value;
     }
 

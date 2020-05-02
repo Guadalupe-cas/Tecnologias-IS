@@ -19,30 +19,30 @@ creacion de un sistema para una agencia de autobus, los datos relevantes se mues
 - [ ] Eliminar Ruta       
 
       ​
-      $$
-      Cliente
-      $$
-      ​           
+
+      ​      *Cliente*
+
+      ​
 
 
 
 - [ ] Agregar Cliente                   
+
 - [ ] Consultar Cliente             
+
 - [ ] Modificar Cliente                
+
 - [ ] Eliminar Cliente
 
 
-
-$$
-Boleto
-$$
-
+*Boleto*
 
 
 - [ ] Agregar Boleto
-- [ ] Consultar Boleto
-- [ ] Cancelar Boleto                 
 
+- [ ] Consultar Boleto
+
+- [ ] Cancelar Boleto                 
 
 
 
@@ -81,13 +81,11 @@ $$
 
 ## <u>Mensajes del sistema :</u>
 
-$$
-Ruta
-$$
 
 
+​                                               **Ruta**
 
-###### Agregar Ruta
+Agregar Ruta
 
 Si  el usuario llena los datos que se solicitan  los cuales se muestran en la parte de arriba.
 
@@ -117,10 +115,7 @@ Una vez que todos los datos de las rutas están en el sistema el usuario podrá 
 
 
 
-
-$$
-Cliente
-$$
+​                                                                     **Cliente**
 
 ###### Agregar Cliente
 
@@ -148,11 +143,9 @@ Una vez que todos los datos de los clientes están en el sistema el usuario podr
 
 
 
+​                                                                   **Boleto**
 
 
-$$
-Boleto
-$$
 
 ###### Agregar Boleto
 
