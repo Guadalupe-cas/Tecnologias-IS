@@ -1,6 +1,6 @@
 # Tecnologias-IS
 
-Sistema  Web Agencia Autobus   http://54.196.61.178:8080/Autobus1.wsdl
+Sistema  Web Agencia Autobus   http://100.26.227.87:8080/Autobus1.wsdl
 # Agencia de Autobus
 
 ![Autovías - Empresa, venta de boletos de autobus, descuento de ...](https://www.autovias.com.mx/application/public/img/empresa/empresa_header.png)
