@@ -2,6 +2,8 @@
 
 # Agencia de Autobus
 
+
+
 ![Autovías - Empresa, venta de boletos de autobus, descuento de ...](https://www.autovias.com.mx/application/public/img/empresa/empresa_header.png)
 
 ## *Descripcion:*
@@ -10,13 +12,13 @@ creacion de un sistema para una agencia de autobus, los datos relevantes se mues
 
 ## Requerimientos 
 
-- [ ] Agregar Ruta				
+- [ ] Agregar Viaje				
 
-- [ ] Consultar Ruta                
+- [ ] Consultar Viaje                
 
-- [ ] Modificar Ruta                  
+- [ ] Modificar Viaje                 
 
-- [ ] Eliminar Ruta       
+- [ ] Eliminar Viaje     
 
       ​
       $$
