@@ -19,29 +19,28 @@ creacion de un sistema para una agencia de autobus, los datos relevantes se mues
 - [ ] Eliminar Ruta       
 
       ​
-
-      ​      *Cliente*
-
-      ​
+      $$
+      Cliente
+      $$
+      ​           
 
 
 
 - [ ] Agregar Cliente                   
-
 - [ ] Consultar Cliente             
-
 - [ ] Modificar Cliente                
-
 - [ ] Eliminar Cliente
 
 
-*Boleto*
+
+$$
+Boleto
+$$
+
 
 
 - [ ] Agregar Boleto
-
 - [ ] Consultar Boleto
-
 - [ ] Cancelar Boleto                 
 
 
@@ -49,13 +48,19 @@ creacion de un sistema para una agencia de autobus, los datos relevantes se mues
 
 ## **Variables**
 
-| Nombre de las variables Ruta | Tipo     |
-| ---------------------------- | -------- |
-| IdRuta                       | Cadena   |
-| NombreRuta                   | *Cadena* |
-| Destino                      | *Cadena* |
-| TipoBoleto                   | *Cadena* |
-| Costo                        | *Entero* |
+
+
+| Nombre de las variables Viaje | Tipo   |
+| ----------------------------- | ------ |
+| Id                            | Cadena |
+| Destino                       | Cadena |
+| Fecha Salida                  | Cadena |
+| Hora                          | Cadena |
+| Nombre del cliente            | Cadena |
+| Costo                         | Cadena |
+| Numero de asiento             | Cadena |
+
+
 
 
 
@@ -67,55 +72,63 @@ creacion de un sistema para una agencia de autobus, los datos relevantes se mues
 
 
 
-| Nombre de las variables Boleto | Tipo     |
-| ------------------------------ | -------- |
-| IdBoleto                       | *Cadena* |
-| NombreRuta                     | *Cadena* |
-| Destino                        | *Cadena* |
-| NombreCliente                  | *Cadena* |
-| TipoBoleto                     | *Cadena* |
-| Costo                          | *Entero* |
-| NumAsiento                     | *Entero* |
+
+
+| Nombre de las variables Boleto | Tipo   |
+| ------------------------------ | ------ |
+| Id                             | Cadena |
+| Destino                        | Cadena |
+| Fecha Salida                   | Cadena |
+| Hora                           | Cadena |
+| NombreCliente                  | Cadena |
+| Costo                          | Cadena |
+| Numero de asiento              | Cadena |
+|                                |        |
 
 
 
 ## <u>Mensajes del sistema :</u>
 
+$$
+Ruta
+$$
 
 
-​                                               **Ruta**
 
-Agregar Ruta
+###### Agregar Viaje
 
 Si  el usuario llena los datos que se solicitan  los cuales se muestran en la parte de arriba.
 
-​				El mensaje dira "Ruta Agregada con exito".
+​				El mensaje dira "Viaje  Agregado con exito".
 
-###### Consultar Ruta
+###### Consultar Viaje
 
 Una vez que los datos de las rutas se han ingresado , el usuario podra consultar todas las rutas del sistema,
 
 la cual se desglozaran los diferentes datos que fueron agregados anteriormente.
 
-​				"Ingrese Nombre de la ruta que desee consultar"
+​				"Ingrese Id del viaje  que desee consultar"
 
-###### Modificar Ruta
+###### Modificar Viaje
 
 Ya que los datos están en el sistema el usuario podrá modificar los datos ingresado.
 
 ​							"Datos Modificados"
 
-###### Eliminar Ruta
+###### Eliminar Viaje
 
 Una vez que todos los datos de las rutas están en el sistema el usuario podrá eliminar la ruta seleccionada 				
 
-​					“Ingrese el Nombre de la ruta que dese eliminar”
+​					“Ingrese el Id del viaje  que dese eliminar”
 
 
 
+Administrador:
 
 
-​                                                                     **Cliente**
+$$
+Cliente
+$$
 
 ###### Agregar Cliente
 
@@ -143,9 +156,11 @@ Una vez que todos los datos de los clientes están en el sistema el usuario podr
 
 
 
-​                                                                   **Boleto**
 
 
+$$
+Boleto
+$$
 
 ###### Agregar Boleto
 
