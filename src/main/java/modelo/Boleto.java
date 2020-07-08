@@ -8,9 +8,10 @@ import java.util.logging.Logger;
 public class Boleto {
 
 
-	private String IdBoleto;
-	private String NombreRuta;
+	private String Id;
 	private String Destino;
+	private String FechaSalida;
+	private String Hora;
 	private String NombreCliente;
 	private String TipoBoleto;
 	private String Costo;
@@ -19,10 +20,11 @@ public class Boleto {
 	
 	
 	
-	public Boleto(String IdBoleto, String NombreRuta, String Destino,String NombreCliente, String TipoBoleto,String Costo, String NumAsiento) {
-		this.IdBoleto = IdBoleto;
-		this.NombreRuta = NombreRuta;
+	public Boleto(String Id, String Destino,String FechaSalida,String Hora,String NombreCliente, String TipoBoleto,String Costo, String NumAsiento) {
+		this.Id = Id;
 		this.Destino = Destino;
+		this.FechaSalida = FechaSalida;
+		this.Hora = Hora;
 		this.NombreCliente = NombreCliente;
 		this.TipoBoleto = TipoBoleto;
 		this.Costo = Costo;
@@ -41,30 +43,18 @@ public class Boleto {
 
 
 
-	public String getIdBoleto() {
-		return IdBoleto;
+
+	public String getId() {
+		return Id;
 	}
 
 
 
 
-	public void setIdBoleto(String idBoleto) {
-		IdBoleto = idBoleto;
+	public void setIdBoleto(String id) {
+		Id= id;
 	}
 
-
-
-
-	public String getNombreRuta() {
-		return NombreRuta;
-	}
-
-
-
-
-	public void setNombreRuta(String nombreRuta) {
-		NombreRuta = nombreRuta;
-	}
 
 
 
@@ -135,5 +125,35 @@ public class Boleto {
 	public void setNumAsiento(String numAsiento) {
 		NumAsiento = numAsiento;
 	}
+
+
+
+
+	public String getFechaSalida() {
+		return FechaSalida;
+	}
+
+
+
+
+	public void setFechaSalida(String fechaSalida) {
+		FechaSalida = fechaSalida;
+	}
+
+
+
+
+	public String getHora() {
+		return Hora;
+	}
+
+
+
+
+	public void setHora(String hora) {
+		Hora = hora;
+	}
+	
+	
 
 }

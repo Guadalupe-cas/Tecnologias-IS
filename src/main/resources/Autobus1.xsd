@@ -9,6 +9,11 @@
   <sequence>
   <element name = "IdRuta" type = "string"></element>
   	<element name ="NombreRuta" type = "string"></element> 	
+  	<element name ="Destino" type = "string"></element> 	
+ 	<element name ="FechaSalida" type = "string"></element> 	
+   	<element name ="Hora" type = "string"></element> 
+   	<element name ="Costo" type = "string"></element>
+   	<element name ="NumAsiento" type = "string"></element> 		
   </sequence>
   </complexType>
    </element>
@@ -34,8 +39,13 @@
   <element name ="ConsultarRutaResponse">
   <complexType>
   <sequence>
-   <element name = "IdRuta" type = "string"></element>
-  	<element name ="NombreRuta" type = "string"></element>
+  <element name = "IdRuta" type = "string"></element>
+  	<element name ="NombreRuta" type = "string"></element> 	
+  	<element name ="Destino" type = "string"></element> 	
+ 	<element name ="FechaSalida" type = "string"></element> 	
+   	<element name ="Hora" type = "string"></element> 
+   	<element name ="Costo" type = "string"></element>
+   	<element name ="NumAsiento" type = "string"></element> 		
   </sequence>
   </complexType>
    </element>
@@ -64,9 +74,13 @@
   
     <element name ="ModificarRutaRequest">
   <complexType>
-  <sequence>
-    <element name = "IdRuta" type = "string"></element>
-  	<element name ="NombreRuta" type = "string"></element>  
+  <sequence> 
+  	<element name ="NombreRuta" type = "string"></element> 	
+  	<element name ="Destino" type = "string"></element> 	
+ 	<element name ="FechaSalida" type = "string"></element> 	
+   	<element name ="Hora" type = "string"></element> 
+   	<element name ="Costo" type = "string"></element>
+   	<element name ="NumAsiento" type = "string"></element> 		
   </sequence>
   </complexType>
    </element>
@@ -76,7 +90,12 @@
   <complexType>
   <sequence>
   <element name = "IdRuta" type = "string"></element>
-  	<element name ="NombreRuta" type = "string"></element>
+  	<element name ="NombreRuta" type = "string"></element> 	
+  	<element name ="Destino" type = "string"></element> 	
+ 	<element name ="FechaSalida" type = "string"></element> 	
+   	<element name ="Hora" type = "string"></element> 
+   	<element name ="Costo" type = "string"></element> 
+   		<element name ="NumAsiento" type = "string"></element>		
   </sequence>
   </complexType>
    </element>
@@ -136,9 +155,7 @@
   <element name ="ModificarClienteResponse">
   <complexType>
   <sequence>
-   <element name ="NombreCliente" type = "string"></element>
-   <element name ="Apellidos" type = "string"></element>
-  <element name = "IdCliente" type = "string"></element>
+ <element name = "respuesta" type = "string"></element>
   </sequence>
   </complexType>
    </element>
@@ -165,9 +182,10 @@
    <element name ="AgregarBoletoRequest">
   <complexType>
   <sequence>
-  <element name = "IdBoleto" type = "string"></element>
-   <element name = "NombreRuta" type = "string"></element>
+  <element name = "Id" type = "string"></element>
     <element name ="Destino" type = "string"></element> 
+    <element name ="FechaSalida" type = "string"></element>
+    <element name ="Hora" type = "string"></element>
   <element name = "NombreCliente" type = "string"></element>
   <element name ="TipoBoleto" type = "string"></element>
   	<element name ="Costo" type = "string"></element>
@@ -188,7 +206,7 @@
      <element name ="ConsultarBoletoRequest">
   <complexType>
   <sequence>
-  <element name = "IdBoleto" type = "string"></element>
+  <element name = "Id" type = "string"></element>
  </sequence>
   </complexType>
    </element>
@@ -196,9 +214,10 @@
     <element name ="ConsultarBoletoResponse">
   <complexType>
   <sequence>
-  <element name = "IdBoleto" type = "string"></element>
-   <element name = "NombreRuta" type = "string"></element>
+   <element name = "Id" type = "string"></element>
     <element name ="Destino" type = "string"></element> 
+    <element name ="FechaSalida" type = "string"></element>
+    <element name ="Hora" type = "string"></element>
   <element name = "NombreCliente" type = "string"></element>
   <element name ="TipoBoleto" type = "string"></element>
   	<element name ="Costo" type = "string"></element>
@@ -212,7 +231,7 @@
      <element name ="CancelarBoletoRequest">
   <complexType>
   <sequence>
-  <element name = "IdBoleto" type = "string"></element>
+  <element name = "Id" type = "string"></element>
  </sequence>
   </complexType>
    </element>
@@ -224,6 +243,101 @@
   </sequence>
   </complexType>
    </element>
+   
+   
+   
+    
+  <element name ="AgregarViajeRequest">
+  <complexType>
+  <sequence>
+  <element name = "Id" type = "string"></element>	
+  	<element name ="Destino" type = "string"></element> 	
+ 	<element name ="FechaSalida" type = "string"></element> 	
+   	<element name ="Hora" type = "string"></element> 
+     <element name = "NombreCliente" type = "string"></element>
+   	<element name ="Costo" type = "string"></element>
+   	<element name ="NumAsiento" type = "string"></element> 		
+  </sequence>
+  </complexType>
+   </element>
+   
+    <element name ="AgregarViajeResponse">
+  <complexType>
+  <sequence>
+  	<element name ="respuesta" type = "string"></element>
+  </sequence>
+  </complexType>
+   </element>
+   
+    
+  <element name ="ConsultarViajeRequest">
+  <complexType>
+  <sequence>
+  	<element name ="Id" type = "string"></element> 
+  </sequence>
+  </complexType>
+   </element>
+
+  
+  <element name ="ConsultarViajeResponse">
+  <complexType>
+  <sequence>
+  <element name = "Id" type = "string"></element>	
+  	<element name ="Destino" type = "string"></element> 	
+ 	<element name ="FechaSalida" type = "string"></element> 	
+   	<element name ="Hora" type = "string"></element> 
+   <element name = "NombreCliente" type = "string"></element>
+   	<element name ="Costo" type = "string"></element>
+   	<element name ="NumAsiento" type = "string"></element> 		
+  </sequence>
+  </complexType>
+   </element>
+  
+  
+ 
+    
+   
+  <element name ="EliminarViajeRequest">
+  <complexType>
+  <sequence>
+  	<element name ="Id" type = "string"></element> 
+  </sequence>
+  </complexType>
+   </element>
+
+  
+  <element name ="EliminarViajeResponse">
+  <complexType>
+  <sequence>
+    <element name = "respuesta" type = "string"></element>
+  </sequence>
+  </complexType>
+   </element>  
+ 
+  
+    <element name ="ModificarViajeRequest">
+  <complexType>
+  <sequence> 	
+   <element name = "Id" type = "string"></element>
+  	<element name ="Destino" type = "string"></element> 	
+ 	<element name ="FechaSalida" type = "string"></element> 	
+   	<element name ="Hora" type = "string"></element> 
+     <element name = "NombreCliente" type = "string"></element>
+   	<element name ="Costo" type = "string"></element>
+   	<element name ="NumAsiento" type = "string"></element> 		
+  </sequence>
+  </complexType>
+   </element>
+
+  
+   <element name ="ModificarViajeResponse">
+  <complexType>
+  <sequence>
+	   <element name = "respuesta" type = "string"></element>
+  </sequence>
+  </complexType>
+   </element>
+  
   
   
   

@@ -25,11 +25,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="IdRuta" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="NombreRuta" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Id" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Destino" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="FechaSalida" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Hora" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="NombreCliente" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Costo" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="NumAsiento" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
@@ -42,78 +42,54 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "idRuta",
-    "nombreRuta",
+    "id",
     "destino",
     "fechaSalida",
     "hora",
+    "nombreCliente",
     "costo",
     "numAsiento"
 })
-@XmlRootElement(name = "ModificarRutaResponse")
-public class ModificarRutaResponse {
+@XmlRootElement(name = "AgregarViajeRequest")
+public class AgregarViajeRequest {
 
-    @XmlElement(name = "IdRuta", required = true)
-    protected String idRuta;
-    @XmlElement(name = "NombreRuta", required = true)
-    protected String nombreRuta;
+    @XmlElement(name = "Id", required = true)
+    protected String id;
     @XmlElement(name = "Destino", required = true)
     protected String destino;
     @XmlElement(name = "FechaSalida", required = true)
     protected String fechaSalida;
     @XmlElement(name = "Hora", required = true)
     protected String hora;
+    @XmlElement(name = "NombreCliente", required = true)
+    protected String nombreCliente;
     @XmlElement(name = "Costo", required = true)
     protected String costo;
     @XmlElement(name = "NumAsiento", required = true)
     protected String numAsiento;
 
     /**
-     * Obtiene el valor de la propiedad idRuta.
+     * Obtiene el valor de la propiedad id.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getIdRuta() {
-        return idRuta;
+    public String getId() {
+        return id;
     }
 
     /**
-     * Define el valor de la propiedad idRuta.
+     * Define el valor de la propiedad id.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setIdRuta(String value) {
-        this.idRuta = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad nombreRuta.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNombreRuta() {
-        return nombreRuta;
-    }
-
-    /**
-     * Define el valor de la propiedad nombreRuta.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNombreRuta(String value) {
-        this.nombreRuta = value;
+    public void setId(String value) {
+        this.id = value;
     }
 
     /**
@@ -186,6 +162,30 @@ public class ModificarRutaResponse {
      */
     public void setHora(String value) {
         this.hora = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad nombreCliente.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    /**
+     * Define el valor de la propiedad nombreCliente.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNombreCliente(String value) {
+        this.nombreCliente = value;
     }
 
     /**

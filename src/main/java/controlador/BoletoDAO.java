@@ -16,9 +16,10 @@ import database.conexion;
 
 
 public class BoletoDAO {
-	private String IdBoleto;
-	private String NombreRuta;
+	private String Id;
 	private String Destino;
+	private String FechaSalida;
+	private String Hora;
 	private String NombreCliente;
 	private String TipoBoleto;
 	private String Costo;
@@ -28,10 +29,11 @@ public class BoletoDAO {
 	
 	
 	
-	public BoletoDAO(String IdBoleto, String NombreRuta, String Destino,String NombreCliente, String TipoBoleto,String Costo, String NumAsiento) {
-		this.IdBoleto = IdBoleto;
-		this.NombreRuta = NombreRuta;
+	public BoletoDAO(String Id, String Destino,String FechaSalida,String Hora,String NombreCliente, String TipoBoleto,String Costo, String NumAsiento) {
+		this.Id = Id;
 		this.Destino = Destino;
+		this.FechaSalida = FechaSalida;
+		this.Hora = Hora;
 		this.NombreCliente = NombreCliente;
 		this.TipoBoleto = TipoBoleto;
 		this.Costo = Costo;
@@ -61,15 +63,15 @@ public BoletoDAO() throws ClassNotFoundException{
 	/**
 	 * @param idReservacion
 	 */
-	public BoletoDAO(String IdBoleto) {
-		this.IdBoleto = IdBoleto;
+	public BoletoDAO(String Id) {
+		this.Id = Id;
 	}
 
 	/**
 	 * @return the idReservacion
 	 */
-	public String getIdBoleto() {
-		return IdBoleto;
+	public String getId() {
+		return Id;
 	}
 
 	
@@ -82,15 +84,17 @@ public BoletoDAO() throws ClassNotFoundException{
 		this.database = new conexion();
 		try {
 			this.database.connection().createStatement().execute(
-					"INSERT INTO boleto (IdBoleto,NombreRuta,Destino,NombreCliente,TipoBoleto,Costo,NumAsiento) VALUES "
-					+ "('"+this.IdBoleto+"','"+this.NombreRuta+"','"+this.Destino+"','"+this.NombreCliente+"','"+this.TipoBoleto
-					+"','"+this.Costo+"','"+this.NumAsiento+"')");
+					"INSERT INTO boleto(Id,Destino,FechaSalida,Hora,NombreCliente,TipoBoleto,Costo,NumAsiento) VALUES "
+					+ "('"+this.Id+"','"+this.Destino+"','"+this.FechaSalida+"','"+this.Hora+"','"+this.NombreCliente+"','"+this.TipoBoleto+"','"+this.Costo+"','"+this.NumAsiento+"')");
 			resultado = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return resultado;
+
+
 	}
+
 	
 	
 	/*
@@ -139,7 +143,7 @@ public BoletoDAO() throws ClassNotFoundException{
 		this.database = new conexion();
 		try {
 			this.database.connection().createStatement().execute(
-					"DELETE FROM boleto WHERE IdBoleto = '"+this.IdBoleto + "'");
+					"DELETE FROM boleto WHERE Id = '"+this.Id + "'");
 			resultado = true;				
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -163,9 +167,9 @@ public BoletoDAO() throws ClassNotFoundException{
 	
 		this.database = new conexion();
 			try {
-				ResultSet rs = this.database.connection().createStatement().executeQuery("SELECT * FROM boleto WHERE IdBoleto= '"+this.IdBoleto + "'");
+				ResultSet rs = this.database.connection().createStatement().executeQuery("SELECT * FROM boleto WHERE Id= '"+this.Id + "'");
 				while(rs.next()) {
-					boleto = new Boleto (rs.getString("IdBoleto"),rs.getString("NombreRuta"), rs.getString("Destino"),rs.getString("NombreCliente")
+					boleto = new Boleto (rs.getString("Id"), rs.getString("Destino"),rs.getString("FechaSalida"),rs.getString("Hora"),rs.getString("NombreCliente")
 							,rs.getString("TipoBoleto"),rs.getString("Costo"),rs.getString("NumAsiento"));
 				}
 				
@@ -228,11 +232,6 @@ public BoletoDAO() throws ClassNotFoundException{
 		return null;
 	}
 
-
-	public String getNombreRuta() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 	

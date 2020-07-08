@@ -49,7 +49,7 @@ public class conexion {
         this.username = username;
         this.password = password;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/autobus", "isabel", "azul1495");
+            conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/autobus?autoReconnect=true&useSSL=false", "isabel", "azul1495");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

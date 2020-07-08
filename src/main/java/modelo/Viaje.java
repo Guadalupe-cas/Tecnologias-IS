@@ -6,58 +6,49 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Ruta {
+public class Viaje {
 	
-	private String IdRuta;
-	private String NombreRuta;
+	private String Id;
 	private String Destino;
 	private String FechaSalida;
 	private String Hora;
+	private String NombreCliente;
 	private String Costo;
 	private String NumAsiento;
 	
 	
-	public Ruta(String idRuta, String nombreRuta,String destino , String fechaSalida,String hora,String costo,String numAsiento) {
+	public Viaje(String Id, String Destino , String FechaSalida,String Hora,String NombreCliente,String Costo,String NumAsiento) {
 		
-		IdRuta = idRuta;
-		NombreRuta = nombreRuta;
-		Destino = destino;
-		FechaSalida = fechaSalida;
-		Hora = hora;
-		Costo = costo;
-		NumAsiento = numAsiento;
-		
-		
+		this.Id = Id;
+		this.Destino = Destino;
+		this.FechaSalida = FechaSalida;
+		this.Hora = Hora;
+		this.NombreCliente = NombreCliente;
+		this.Costo = Costo;
+		this.NumAsiento = NumAsiento;
 		
 		
+		
+		
 	}
 
 
 
-	private String nombreRuta() {
-		// TODO Auto-generated method stub
-		return null;
+	
+
+
+
+	public String getId() {
+		return Id;
 	}
 
 
-	public String getIdRuta() {
-		return IdRuta;
+	public void setId(String id) {
+		Id= id;
 	}
 
 
-	public void setIdRuta(String idRuta) {
-		IdRuta = idRuta;
-	}
 
-
-	public String getNombreRuta() {
-		return NombreRuta;
-	}
-
-
-	public void setNombreRuta(String nombreRuta) {
-		NombreRuta = nombreRuta;
-	}
 
 
 
@@ -108,6 +99,19 @@ public class Ruta {
 	}
 
 
+	public String getNombreCliente() {
+		return NombreCliente;
+	}
+
+
+
+
+
+	public void setnombreCliente(String nombreCliente) {
+		Hora = nombreCliente;
+	}
+
+	
 
 
 

@@ -3,20 +3,20 @@ package controlador;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import modelo.Ruta;
+
+import modelo.Viaje;
 import database.conexion;
-import modelo.Ruta;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import database.conexion;
 
-public class RutaDAO {
-	private String IdRuta;
-	private String NombreRuta;
+public class ViajeDAO {
+	private String Id;
 	private String Destino;
 	private String FechaSalida;
 	private String Hora;
+	private String NombreCliente;
 	private String Costo;
 	private String NumAsiento;
 	
@@ -29,18 +29,18 @@ public class RutaDAO {
 	 * Constructor de CLIENTE para registrar al cliente
 	 * @param nombre, apellido, telefono, correo, formaPago
 	 */
-	public RutaDAO(String IdRuta,String NombreRuta,String Destino,String FechaSalida, String Hora, String Costo, String NumAsiento) {
-		this.IdRuta =  IdRuta;
-		this.NombreRuta = NombreRuta;
+	public ViajeDAO(String Id,String Destino,String FechaSalida, String Hora,String NombreCliente, String Costo, String NumAsiento) {
+		this.Id =  Id;
 		this.Destino = Destino;
 		this.FechaSalida = FechaSalida;
 		this.Hora = Hora;
+		this.NombreCliente = NombreCliente;
 		this.Costo = Costo;
 		this.NumAsiento = NumAsiento;
 	}
 	
 
-public RutaDAO() throws ClassNotFoundException{
+public ViajeDAO() throws ClassNotFoundException{
 	database = new conexion();
 }
 
@@ -56,10 +56,13 @@ public RutaDAO() throws ClassNotFoundException{
 	 * Constructor de CLIENTE para eliminar al cliente
 	 * @param idCliente
 	 */
-	public RutaDAO(String IdRuta) {
-		this.IdRuta = IdRuta;
+	public ViajeDAO(String Id) {
+		this.Id = Id;
 	}
 	
+
+
+
 
 
 
@@ -67,13 +70,13 @@ public RutaDAO() throws ClassNotFoundException{
 	 * Metodo para registrar un cliente en la Base de Datos
 	 * @return true si se registro el cliente de forma exitosa en la BD
 	 */
-	public boolean AgregarRuta() {
+	public boolean AgregarViaje() {
 		boolean resultado = false;
 		this.database = new conexion();
 		try {
 			this.database.connection().createStatement().execute(
-					"INSERT INTO rutas(IdRuta,NombreRuta,Destino,FechaSalida,Hora,Costo,NumAsiento) VALUES "
-					+ "('"+this.IdRuta+"','"+this.NombreRuta+"','"+this.Destino+"','"+this.FechaSalida+"','"+this.Hora+"','"+this.Costo+"','"+this.NumAsiento+"')");
+					"INSERT INTO viajes(Id,Destino,FechaSalida,Hora,NombreCliente, Costo,NumAsiento) VALUES "
+					+ "('"+this.Id+"','"+this.Destino+"','"+this.FechaSalida+"','"+this.Hora+"','"+this.NombreCliente+"','"+this.Costo+"','"+this.NumAsiento+"')");
 			resultado = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -91,20 +94,19 @@ public RutaDAO() throws ClassNotFoundException{
 	 * Metodo para actualizar a un cliente en la Base de Datos
 	 * @return true si se actualizo el cliente de forma exitosa en la BD
 	 */
-	public boolean ModificarRuta() {
+	public boolean ModificarViaje() {
 		boolean resultado = false;
 		this.database = new conexion();
 		try {
 			this.database.connection().createStatement().execute(
-					"UPDATE rutas SET "
-					+ "IdRuta = '"+this.IdRuta+"',"
-					+ "NombreRuta = '"+this.NombreRuta+"',"
-					+ "Destino = '"+this.Destino+"',"
-					+ "FechaSalida = '"+this.FechaSalida+"',"
-					+ "Hora = '"+this.Hora+"',"
-					+ "Costo = '"+this.Costo+"',"
-					+ "NumAsiento = '"+this.NumAsiento+"',"
-					+ "WHERE IdRuta = "+this.IdRuta + "'");
+					"UPDATE viajes SET "
+					+ "Destino = '"+this.Destino+"'"
+					+ " ,FechaSalida =' "+this.FechaSalida+"'"
+					+ " ,Hora = '"+this.Hora+"'"
+					+ " ,NombreCliente = '"+this.NombreCliente+"'"
+					+ " ,Costo = "+this.Costo
+					+ " ,NumAsiento = '"+this.NumAsiento+"'"
+					+ " WHERE Id = "+this.Id);
 			resultado = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -113,11 +115,11 @@ public RutaDAO() throws ClassNotFoundException{
 	}
 	
 	
-	public boolean verificarIdRuta() {
+	public boolean verificarId() {
 		boolean existe = false;
 		this.database = new conexion();
 			try {
-				final String queryCheck = "SELECT * FROM rutas WHERE IdRuta = "+this.IdRuta + "'";
+				final String queryCheck = "SELECT * FROM viajes WHERE Id = '"+this.Id + "'";
 				final PreparedStatement ps = this.database.connection().prepareStatement(queryCheck);
 				//ps.setString(1, msgid);
 				final ResultSet resultSet = ps.executeQuery();
@@ -137,12 +139,12 @@ public RutaDAO() throws ClassNotFoundException{
 	 * Metodo para eliminar a un cliente de la Base de Datos
 	 * @return true si se elimina el cliente de forma exitosa
 	 */
-	public boolean EliminarRuta() {
+	public boolean EliminarViaje() {
 		boolean resultado = false;
 		this.database = new conexion();
 		try {
 			this.database.connection().createStatement().execute(
-					"DELETE FROM rutas WHERE IdRuta = '"+this.IdRuta +"'");
+					"DELETE FROM viajes WHERE Id = '"+this.Id +"'");
 			resultado = true;				
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -153,6 +155,7 @@ public RutaDAO() throws ClassNotFoundException{
 	/**
 	 * @return the nombre
 	 */
+	/*
 	public String getNombreRuta() {
 		this.database = new conexion();
 		if (IdRuta == null) {
@@ -167,22 +170,22 @@ public RutaDAO() throws ClassNotFoundException{
 		return NombreRuta;
 	}
 
-	
+	*/
 
 	/**
 	 * @return the apellido
 	 */
 
 	
-	public Ruta  ConsultarIdRuta() {
-		Ruta ruta = null;
+	public Viaje  ConsultarId() {
+		Viaje viaje = null;
 	
 		this.database = new conexion();
 			try {
-				ResultSet rs = this.database.connection().createStatement().executeQuery("SELECT * FROM rutas WHERE IdRuta = '"+this.IdRuta + "'");
+				ResultSet rs = this.database.connection().createStatement().executeQuery("SELECT * FROM viajes WHERE Id = '"+this.Id + "'");
 				while(rs.next()) {
-					ruta = new Ruta (rs.getString("NombreRuta"),rs.getString("IdRuta"),
-							rs.getString("Destino"),rs.getString("FechaSalida"),rs.getString("Hora"),rs.getString("Costo"),rs.getString("NumAsiento"));
+					viaje = new Viaje (rs.getString("Id"),
+							rs.getString("Destino"),rs.getString("FechaSalida"),rs.getString("Hora"),rs.getString("NombreCliente"),rs.getString("Costo"),rs.getString("NumAsiento"));
 							
 						
 				}
@@ -202,16 +205,16 @@ public RutaDAO() throws ClassNotFoundException{
 			} catch(SQLException e) {
 				e.printStackTrace();
 			}
-		return ruta;
+		return viaje;
 	}
 
-	public String getIdRuta() {
+	public String getId() {
 		// TODO Auto-generated method stub
-		return IdRuta ;
+		return Id ;
 	}
 
 
-	public boolean ConsultarRuta() {
+	public boolean ConsultarViaje() {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -222,6 +225,12 @@ public RutaDAO() throws ClassNotFoundException{
 		return null;
 	}
 
+	
+	public String getNombreCliente() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 	public String getNumAsiento() {
 		// TODO Auto-generated method stub

@@ -9,6 +9,8 @@ import org.example.autobus1.AgregarRequest;
 import org.example.autobus1.AgregarResponse;
 */
 import org.example.autobus1.AgregarRutaResponse;
+import org.example.autobus1.AgregarViajeRequest;
+import org.example.autobus1.AgregarViajeResponse;
 import org.example.autobus1.CancelarBoletoRequest;
 import org.example.autobus1.CancelarBoletoResponse;
 import org.example.autobus1.ConsultarBoletoRequest;
@@ -22,6 +24,8 @@ import org.example.autobus1.ConsultarResponse;
 */
 import org.example.autobus1.ConsultarRutaRequest;
 import org.example.autobus1.ConsultarRutaResponse;
+import org.example.autobus1.ConsultarViajeRequest;
+import org.example.autobus1.ConsultarViajeResponse;
 import org.example.autobus1.EliminarClienteRequest;
 import org.example.autobus1.EliminarClienteResponse;
 /*
@@ -30,6 +34,8 @@ import org.example.autobus1.EliminarResponse;
 */
 import org.example.autobus1.EliminarRutaRequest;
 import org.example.autobus1.EliminarRutaResponse;
+import org.example.autobus1.EliminarViajeRequest;
+import org.example.autobus1.EliminarViajeResponse;
 import org.example.autobus1.ModificarClienteRequest;
 import org.example.autobus1.ModificarClienteResponse;
 /*
@@ -38,6 +44,8 @@ import org.example.autobus1.ModificarResponse;
 */
 import org.example.autobus1.ModificarRutaRequest;
 import org.example.autobus1.ModificarRutaResponse;
+import org.example.autobus1.ModificarViajeRequest;
+import org.example.autobus1.ModificarViajeResponse;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -46,11 +54,13 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import controlador.BoletoDAO;
 import controlador.ClienteDAO;
 import controlador.RutaDAO;
+import controlador.ViajeDAO;
 /*
 import controlador.BoletoDAO;
 import controlador.RutaDAO;
 */
 import modelo.Ruta;
+import modelo.Viaje;
 import modelo.Boleto;
 import modelo.Cliente;
 
@@ -82,12 +92,12 @@ public class EndPoint {
 @ResponsePayload
 public AgregarRutaResponse  getAgregarRuta( @RequestPayload  AgregarRutaRequest  peticion ) {
 	AgregarRutaResponse respuesta = new  AgregarRutaResponse ();
-	RutaDAO Ruta =  new  RutaDAO ( peticion . getIdRuta(), peticion . getNombreRuta());
+	RutaDAO Ruta =  new  RutaDAO ( peticion . getIdRuta(), peticion . getNombreRuta(),peticion .getDestino(),peticion .getFechaSalida(), 
+			peticion.getHora(), peticion .getCosto() , peticion .getNumAsiento());
 	if(Ruta.AgregarRuta()){
-		respuesta . setRespuesta ( " Se ha agregado la ruta al sistema " + Ruta.getIdRuta() + "" + Ruta.getNombreRuta()
-		+ "");
+		respuesta . setRespuesta ( " Se  agrego con exito la ruta al sistema " + Ruta.getNombreRuta() +"" );
 	} else {
-		respuesta . setRespuesta ( " No se ha añadido la ruta   al sistema "  + Ruta.getIdRuta() + "" + Ruta.getNombreRuta()
+		respuesta . setRespuesta ( " No se ha añadido la ruta   al sistema "  + Ruta.getNombreRuta()
 		+ "");
 	}
 	return respuesta;
@@ -124,6 +134,12 @@ public AgregarRutaResponse  getAgregarRuta( @RequestPayload  AgregarRutaRequest 
 		if(r != null){
 			respuesta.setIdRuta (r.getIdRuta());  	
 			respuesta.setNombreRuta(r.getNombreRuta());
+			respuesta.setDestino(r.getDestino());
+			respuesta.setFechaSalida( r.getFechaSalida());
+			respuesta.setHora( r.getHora());
+			respuesta.setCosto( r.getCosto());
+			respuesta.setNumAsiento( r.getNumAsiento());
+			
 		} else {
 			respuesta. setNombreRuta ( " No se pudo consultar la ruta intente mas tarde " );
 		}
@@ -196,7 +212,7 @@ public AgregarRutaResponse  getAgregarRuta( @RequestPayload  AgregarRutaRequest 
 	}
 	
 	*/
-	
+	/*
 	
 	
 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ModificarRutaRequest")
@@ -211,7 +227,30 @@ public AgregarRutaResponse  getAgregarRuta( @RequestPayload  AgregarRutaRequest 
 			IdRuta . setIdRuta ( " No se pudo modificar  la ruta del  sistema " );
 		}
 		return IdRuta;
+	}*/
+	
+
+
+	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ModificarRutaRequest")
+	@ResponsePayload
+	public ModificarRutaResponse getModificarRuta(@RequestPayload ModificarRutaRequest peticion) {
+		ModificarRutaResponse respuesta = new ModificarRutaResponse();
+		RutaDAO ruta= new RutaDAO(peticion . getIdRuta(), peticion . getNombreRuta(),peticion .getDestino(),peticion .getFechaSalida(), 
+				peticion.getHora(), peticion .getCosto() , peticion .getNumAsiento());
+		if (ruta.verificarIdRuta()) {
+			if (ruta.ModificarRuta()) {
+				respuesta.setIdRuta("Se ha actualizado la ruta"+ruta.getIdRuta()+ " " + ruta.getNombreRuta() + " en el sistema");
+			} else {
+				respuesta.setIdRuta("No se ha podido actualizar la Ruta ");
+				}
+		
+		
 	}
+	
+		return respuesta;
+	}
+	
+	
 	
 	
 	
@@ -239,10 +278,10 @@ public AgregarRutaResponse  getAgregarRuta( @RequestPayload  AgregarRutaRequest 
 		AgregarClienteResponse respuesta = new  AgregarClienteResponse ();
 		ClienteDAO Cliente =  new  ClienteDAO ( peticion . getNombreCliente (), peticion . getApellidos(), peticion . getIdCliente());
 		if(Cliente.AgregarCliente()){
-			respuesta . setRespuesta ( " Se ha agregado el cliente al sistema " + Cliente.getNombreCliente() + "" + Cliente.getApellidos()
+			respuesta . setRespuesta ( " Se ha agregado el cliente  " + Cliente.getNombreCliente() + "" + Cliente.getApellidos()
 			+ "");
 		} else {
-			respuesta . setRespuesta ( " No se ha añadido agregar el cliente  al sistema " + Cliente.getNombreCliente() + "" + Cliente.getApellidos()
+			respuesta . setRespuesta ( " No se ha añadido el cliente  al sistema " + Cliente.getNombreCliente() + "" + Cliente.getApellidos()
 			+ "");
 		}
 		return respuesta;
@@ -322,16 +361,24 @@ public AgregarRutaResponse  getAgregarRuta( @RequestPayload  AgregarRutaRequest 
 
 	@ResponsePayload
 	public ModificarClienteResponse  getModificarCliente( @RequestPayload  ModificarClienteRequest  peticion ) {
-		ModificarClienteResponse IdCliente = new  ModificarClienteResponse ();
+		ModificarClienteResponse respuesta = new  ModificarClienteResponse ();
 		ClienteDAO Cliente =  new  ClienteDAO ( peticion . getNombreCliente (), peticion . getApellidos(), peticion . getIdCliente());
-		if(Cliente.modificarCliente()){
-			IdCliente. setIdCliente ( " Se a modificado el cliente " );
+		
+			if(Cliente.modificarCliente()) {
+			 respuesta.setRespuesta( " Se a modificado el cliente " );
 		} else {
-			IdCliente. setIdCliente ( " No se pudo modificar el cliente intente de nuevo  " );
+			 respuesta.setRespuesta( " No se pudo modificar el cliente intente de nuevo  " );
 		}
-		return IdCliente;
+		
+	
+		return  respuesta;
 		
 		}
+	 	 	
+	 	 	
+
+	 	 	
+	 	 	
 	 
 	
 	 	 	/*
@@ -395,8 +442,9 @@ public AgregarRutaResponse  getAgregarRuta( @RequestPayload  AgregarRutaRequest 
 	@ResponsePayload
 	public AgregarBoletoResponse  getAgregarBoleto ( @RequestPayload  AgregarBoletoRequest  peticion ) {
 		AgregarBoletoResponse respuesta = new  AgregarBoletoResponse ();
-		BoletoDAO Boleto =  new  BoletoDAO ( peticion . getIdBoleto () , peticion . getNombreRuta(), peticion . getDestino(), peticion.getNombreCliente(),
-				peticion.getTipoBoleto(), peticion.getCosto(), peticion.getNumAsiento());
+		BoletoDAO Boleto =  new  BoletoDAO ( peticion . getId () ,
+				peticion.getDestino(),peticion.getFechaSalida(),peticion.getHora(),peticion.getNombreCliente(),
+				peticion.getTipoBoleto(),peticion.getCosto(),peticion.getNumAsiento());
 		if(Boleto.AgregarBoleto()){
 			respuesta . setRespuesta ( " Se ha agregado el boleto al sistema ");
 		} else {
@@ -405,6 +453,8 @@ public AgregarRutaResponse  getAgregarRuta( @RequestPayload  AgregarRutaRequest 
 		return respuesta;
 		
 		}
+	 	
+	 	
 	
 	 
 	/*
@@ -448,21 +498,22 @@ public AgregarRutaResponse  getAgregarRuta( @RequestPayload  AgregarRutaRequest 
 		@ResponsePayload
 		public ConsultarBoletoResponse  getConsultarBoleto ( @RequestPayload  ConsultarBoletoRequest  peticion ) {
 			ConsultarBoletoResponse respuesta = new  ConsultarBoletoResponse ();
-			BoletoDAO boleto =  new  BoletoDAO ( peticion . getIdBoleto ());
+			BoletoDAO boleto =  new  BoletoDAO ( peticion . getId ());
 			
 			Boleto b = boleto.ConsultarBoleto();
 			
 			if(b != null){
-				respuesta.setIdBoleto (b.getIdBoleto());
-				respuesta.setNombreRuta(b.getNombreRuta());
+				respuesta.setId (b.getId());
 				respuesta.setDestino(b.getDestino());
+				respuesta.setFechaSalida(b.getFechaSalida());
+				respuesta.setHora(b.getHora());
 				respuesta.setNombreCliente(b.getNombreCliente());
 				respuesta.setTipoBoleto(b.getDestino());
 				respuesta.setCosto(b.getCosto());
 				respuesta.setNumAsiento(b.getNumAsiento());
 			
 			} else {
-				respuesta. setIdBoleto ( " No se pudo consultar Cliente intente mas tarde " );
+				respuesta. setId ( " No se pudo consultar el boleto intente mas tarde " );
 			}
 			return respuesta;
 		}
@@ -497,13 +548,108 @@ public AgregarRutaResponse  getAgregarRuta( @RequestPayload  AgregarRutaRequest 
 	@ResponsePayload
 	public CancelarBoletoResponse  getCancelarBoleto( @RequestPayload CancelarBoletoRequest  peticion ) {
 		CancelarBoletoResponse respuesta= new  CancelarBoletoResponse ();
-		BoletoDAO Boleto =  new  BoletoDAO ( peticion . getIdBoleto ());
+		BoletoDAO Boleto =  new  BoletoDAO ( peticion . getId ());
 		if(Boleto.CancelarBoleto()){
-			respuesta.setRespuesta ( " Se ha cancelado el boleto"  + Boleto.getIdBoleto());
+			respuesta.setRespuesta ( " Se ha cancelado el boleto"  + Boleto.getId());
 		} else {
 			respuesta.setRespuesta ( " No se ha podido cancelar el boleto del sistema" );
 		}
 		return respuesta;
 	}
 
+	 	 
+	 /*	 ********************** Viajes****************************************/
+	 	 
+	
+
+	  	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "AgregarViajeRequest")
+
+	 @ResponsePayload
+	 public AgregarViajeResponse  getAgregarViaje( @RequestPayload  AgregarViajeRequest  peticion ) {
+	 	AgregarViajeResponse respuesta = new  AgregarViajeResponse ();
+	 	ViajeDAO Viaje =  new  ViajeDAO ( peticion . getId(),peticion .getDestino(),peticion .getFechaSalida(), 
+	 			peticion.getHora(),peticion.getNombreCliente(), peticion .getCosto() , peticion .getNumAsiento());
+	 	if(Viaje.AgregarViaje()){
+	 		respuesta . setRespuesta ( " Se  agrego con exito el Viaje al sistema " );
+	 	} else {
+	 		respuesta . setRespuesta ( " No se ha añadido el Viaje al sistema " 
+	 		+ "");
+	 	}
+	 	return respuesta;
+	 	
+	 	}
+	  
+	 	
+	 
+	 	
+	 	
+	 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ConsultarViajeRequest")
+
+	 	@ResponsePayload
+	 	public ConsultarViajeResponse  getConsultarViaje( @RequestPayload  ConsultarViajeRequest  peticion ) {
+	 		ConsultarViajeResponse respuesta = new  ConsultarViajeResponse ();
+	 		ViajeDAO viaje =  new  ViajeDAO ( peticion . getId ());
+	 		
+	 		Viaje v = viaje.ConsultarId();
+	 		if(v != null){
+	 			respuesta.setId (v.getId());  	
+	 		
+	 			respuesta.setDestino(v.getDestino());
+	 			respuesta.setFechaSalida( v.getFechaSalida());
+	 			respuesta.setHora( v.getHora());
+	 			respuesta.setNombreCliente( v.getNombreCliente());
+	 			respuesta.setCosto( v.getCosto());
+	 			respuesta.setNumAsiento( v.getNumAsiento());
+	 			
+	 		} else {
+	 			respuesta. setId ( " No se pudo consultar el viaje intente mas tarde " );
+	 		}
+	 		return respuesta;
+	 	}
+	 	
+	 
+	
+	 	
+	 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "EliminarViajeRequest")
+
+	 	@ResponsePayload
+	 	public EliminarViajeResponse  getEliminarViaje ( @RequestPayload  EliminarViajeRequest  peticion ) {
+	 		EliminarViajeResponse respuesta = new  EliminarViajeResponse ();
+	 		ViajeDAO  Viaje =  new  ViajeDAO ( peticion . getId ());
+	 		if(Viaje.EliminarViaje()){
+	 			respuesta.setRespuesta ( " Se elimino el viaje del sistema" );
+	 		} else {
+	 			respuesta.setRespuesta ( " No se puedo eliminar el viaje del sistema " );
+	 		}
+	 		return respuesta;
+	 	}
+	 	
+
+
+
+	 	@PayloadRoot(namespace = "http://www.example.org/Autobus1",localPart = "ModificarViajeRequest")
+	 	@ResponsePayload
+	 	public ModificarViajeResponse getModificarViaje(@RequestPayload ModificarViajeRequest peticion) {
+	 		ModificarViajeResponse respuesta = new ModificarViajeResponse();
+	 		ViajeDAO viaje = new ViajeDAO(peticion . getId(),peticion .getDestino(),peticion .getFechaSalida(), 
+	 				peticion.getHora(),peticion.getNombreCliente(), peticion .getCosto() , peticion .getNumAsiento());
+	 		
+	 			if (viaje.ModificarViaje()) {
+	 				respuesta.setRespuesta("Se ha actualizado el viaje "+viaje.getId()+  " en el sistema");
+	 			} else {
+	 				respuesta.setRespuesta("No se ha podido actualizar el viaje");
+	 				}
+	 		
+	 		
+	 	
+	 	
+	 		return respuesta;
+	 	}
+	 	
+	 	 
+	 	 
+	 	 
+	 	 
+	 	 
+	 	 
 }

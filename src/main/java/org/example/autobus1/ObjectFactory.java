@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2020.05.01 a las 02:39:32 PM CDT 
+// Generado el: 2020.07.06 a las 07:45:21 PM CDT 
 //
 
 
@@ -37,27 +37,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ConsultarRutaRequest }
+     * Create an instance of {@link ModificarViajeResponse }
      * 
      */
-    public ConsultarRutaRequest createConsultarRutaRequest() {
-        return new ConsultarRutaRequest();
-    }
-
-    /**
-     * Create an instance of {@link AgregarClienteResponse }
-     * 
-     */
-    public AgregarClienteResponse createAgregarClienteResponse() {
-        return new AgregarClienteResponse();
-    }
-
-    /**
-     * Create an instance of {@link AgregarBoletoResponse }
-     * 
-     */
-    public AgregarBoletoResponse createAgregarBoletoResponse() {
-        return new AgregarBoletoResponse();
+    public ModificarViajeResponse createModificarViajeResponse() {
+        return new ModificarViajeResponse();
     }
 
     /**
@@ -66,22 +50,6 @@ public class ObjectFactory {
      */
     public EliminarRutaRequest createEliminarRutaRequest() {
         return new EliminarRutaRequest();
-    }
-
-    /**
-     * Create an instance of {@link EliminarRutaResponse }
-     * 
-     */
-    public EliminarRutaResponse createEliminarRutaResponse() {
-        return new EliminarRutaResponse();
-    }
-
-    /**
-     * Create an instance of {@link AgregarBoletoRequest }
-     * 
-     */
-    public AgregarBoletoRequest createAgregarBoletoRequest() {
-        return new AgregarBoletoRequest();
     }
 
     /**
@@ -98,6 +66,14 @@ public class ObjectFactory {
      */
     public ModificarClienteResponse createModificarClienteResponse() {
         return new ModificarClienteResponse();
+    }
+
+    /**
+     * Create an instance of {@link EliminarViajeRequest }
+     * 
+     */
+    public EliminarViajeRequest createEliminarViajeRequest() {
+        return new EliminarViajeRequest();
     }
 
     /**
@@ -125,6 +101,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AgregarViajeResponse }
+     * 
+     */
+    public AgregarViajeResponse createAgregarViajeResponse() {
+        return new AgregarViajeResponse();
+    }
+
+    /**
      * Create an instance of {@link ModificarRutaRequest }
      * 
      */
@@ -141,19 +125,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AgregarRutaResponse }
+     * Create an instance of {@link ConsultarViajeRequest }
      * 
      */
-    public AgregarRutaResponse createAgregarRutaResponse() {
-        return new AgregarRutaResponse();
+    public ConsultarViajeRequest createConsultarViajeRequest() {
+        return new ConsultarViajeRequest();
     }
 
     /**
-     * Create an instance of {@link EliminarClienteRequest }
+     * Create an instance of {@link ConsultarViajeResponse }
      * 
      */
-    public EliminarClienteRequest createEliminarClienteRequest() {
-        return new EliminarClienteRequest();
+    public ConsultarViajeResponse createConsultarViajeResponse() {
+        return new ConsultarViajeResponse();
     }
 
     /**
@@ -181,14 +165,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ConsultarBoletoRequest }
-     * 
-     */
-    public ConsultarBoletoRequest createConsultarBoletoRequest() {
-        return new ConsultarBoletoRequest();
-    }
-
-    /**
      * Create an instance of {@link ModificarClienteRequest }
      * 
      */
@@ -202,6 +178,94 @@ public class ObjectFactory {
      */
     public CancelarBoletoRequest createCancelarBoletoRequest() {
         return new CancelarBoletoRequest();
+    }
+
+    /**
+     * Create an instance of {@link ConsultarRutaRequest }
+     * 
+     */
+    public ConsultarRutaRequest createConsultarRutaRequest() {
+        return new ConsultarRutaRequest();
+    }
+
+    /**
+     * Create an instance of {@link AgregarClienteResponse }
+     * 
+     */
+    public AgregarClienteResponse createAgregarClienteResponse() {
+        return new AgregarClienteResponse();
+    }
+
+    /**
+     * Create an instance of {@link AgregarBoletoResponse }
+     * 
+     */
+    public AgregarBoletoResponse createAgregarBoletoResponse() {
+        return new AgregarBoletoResponse();
+    }
+
+    /**
+     * Create an instance of {@link ModificarViajeRequest }
+     * 
+     */
+    public ModificarViajeRequest createModificarViajeRequest() {
+        return new ModificarViajeRequest();
+    }
+
+    /**
+     * Create an instance of {@link EliminarRutaResponse }
+     * 
+     */
+    public EliminarRutaResponse createEliminarRutaResponse() {
+        return new EliminarRutaResponse();
+    }
+
+    /**
+     * Create an instance of {@link AgregarBoletoRequest }
+     * 
+     */
+    public AgregarBoletoRequest createAgregarBoletoRequest() {
+        return new AgregarBoletoRequest();
+    }
+
+    /**
+     * Create an instance of {@link EliminarViajeResponse }
+     * 
+     */
+    public EliminarViajeResponse createEliminarViajeResponse() {
+        return new EliminarViajeResponse();
+    }
+
+    /**
+     * Create an instance of {@link AgregarRutaResponse }
+     * 
+     */
+    public AgregarRutaResponse createAgregarRutaResponse() {
+        return new AgregarRutaResponse();
+    }
+
+    /**
+     * Create an instance of {@link EliminarClienteRequest }
+     * 
+     */
+    public EliminarClienteRequest createEliminarClienteRequest() {
+        return new EliminarClienteRequest();
+    }
+
+    /**
+     * Create an instance of {@link AgregarViajeRequest }
+     * 
+     */
+    public AgregarViajeRequest createAgregarViajeRequest() {
+        return new AgregarViajeRequest();
+    }
+
+    /**
+     * Create an instance of {@link ConsultarBoletoRequest }
+     * 
+     */
+    public ConsultarBoletoRequest createConsultarBoletoRequest() {
+        return new ConsultarBoletoRequest();
     }
 
     /**

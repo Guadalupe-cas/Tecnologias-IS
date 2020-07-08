@@ -94,10 +94,9 @@ public class ClienteDAO {
 		try {
 			this.database.connection().createStatement().execute(
 					"UPDATE clientes SET "
-					+ "NombreCliente = '"+this.NombreCliente+"',"
-					+ "Apellidos = '"+this.Apellidos+"',"
-					+ "IdCliente = '"+this.IdCliente+"',"
-					+ "WHERE IdCliente = '"+this.IdCliente+"'");
+					+ " ,NombreCliente = '"+this.NombreCliente+"'"
+					+ " ,Apellidos = '"+this.Apellidos+"'"
+					+ "WHERE IdCliente = "+this.IdCliente);
 			resultado = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -105,6 +104,26 @@ public class ClienteDAO {
 		return resultado;
 	}
 	
+	
+	public boolean verificarIdCliente() {
+		boolean existe = false;
+		this.database = new conexion();
+			try {
+				final String queryCheck = "SELECT * FROM clientes WHERE IdCliente = "+this.IdCliente + "'";
+				final PreparedStatement ps = this.database.connection().prepareStatement(queryCheck);
+				//ps.setString(1, msgid);
+				final ResultSet resultSet = ps.executeQuery();
+				if(resultSet.next()) {
+				
+				}
+				
+				
+				existe = true;				
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		return existe;
+	}
 	
 	/**
 	 * Metodo para eliminar a un cliente de la Base de Datos

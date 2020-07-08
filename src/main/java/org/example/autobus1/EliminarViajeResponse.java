@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Id" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="respuesta" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "id"
+    "respuesta"
 })
-@XmlRootElement(name = "CancelarBoletoRequest")
-public class CancelarBoletoRequest {
+@XmlRootElement(name = "EliminarViajeResponse")
+public class EliminarViajeResponse {
 
-    @XmlElement(name = "Id", required = true)
-    protected String id;
+    @XmlElement(required = true)
+    protected String respuesta;
 
     /**
-     * Obtiene el valor de la propiedad id.
+     * Obtiene el valor de la propiedad respuesta.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getId() {
-        return id;
+    public String getRespuesta() {
+        return respuesta;
     }
 
     /**
-     * Define el valor de la propiedad id.
+     * Define el valor de la propiedad respuesta.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setId(String value) {
-        this.id = value;
+    public void setRespuesta(String value) {
+        this.respuesta = value;
     }
 
 }
